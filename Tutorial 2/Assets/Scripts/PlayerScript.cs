@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class PlayerScript : MonoBehaviour
             scoreValue += 1;
             score.text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
+            if(scoreValue >= 4)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            }
         }
     }
 
