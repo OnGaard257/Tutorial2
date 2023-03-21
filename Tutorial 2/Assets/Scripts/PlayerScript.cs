@@ -17,11 +17,16 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject winText;
 
+    public Text lives;
+
+    private int livesValue = 3;
+
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
         score.text = scoreValue.ToString();
+        lives.text = livesValue.ToString();
     }
 
     // Update is called once per frame
@@ -47,6 +52,16 @@ public class PlayerScript : MonoBehaviour
             if(scoreValue >= 5)
             {
                 winText.SetActive(true);
+            }
+        }
+        if (collision.collider.tag == "Enemy")
+        {
+            livesValue -= 1;
+            lives.text = livesValue.ToString();
+            Destroy(collision.collider.gameObject);
+            if(livesValue <=0)
+            {
+                SceneManager.LoadScene("Level 1");
             }
         }
     }
