@@ -21,12 +21,20 @@ public class PlayerScript : MonoBehaviour
 
     private int livesValue = 3;
 
+    public AudioClip musicClipOne;
+
+    public AudioClip musicClipTwo;
+
+    public AudioSource musicSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
         score.text = scoreValue.ToString();
         lives.text = livesValue.ToString();
+        musicSource.clip = musicClipOne;
+        musicSource.Play();
     }
 
     // Update is called once per frame
@@ -52,6 +60,8 @@ public class PlayerScript : MonoBehaviour
             if(scoreValue >= 5)
             {
                 winText.SetActive(true);
+                musicSource.clip = musicClipTwo;
+                musicSource.Play();
             }
         }
         if (collision.collider.tag == "Enemy")
